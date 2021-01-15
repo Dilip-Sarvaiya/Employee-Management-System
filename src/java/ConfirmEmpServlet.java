@@ -66,13 +66,6 @@ public class ConfirmEmpServlet extends HttpServlet {
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
-                 
-           
-            
-            //Task-3 Call the DAO method
-            EmployeeDAO.insert(obj);
-            
-        
         }
     }
 

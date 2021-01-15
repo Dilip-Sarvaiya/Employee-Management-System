@@ -47,12 +47,15 @@ public class SaveEmpServlet extends HttpServlet {
             out.println("<body>");
             out.println("<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\"><h2 style=\"color:white\";>Employee Details</h2></nav>");
             out.println("<div class=\"alert alert-success\" role=\"alert\">");
+            
             out.println("<h3>Name: " + obj.getName()+ "</h3>");
             out.println("<h3>Email: " + obj.getEmail()+ "</h3>");
             out.println("<h3>Salary: " + obj.getAge()+ "</h3>");
             out.println("<h3>Age: " + obj.getGender() + "</h3>");
             out.println("<h3>Gender: " + obj.getDepartment() + "</h3>");
             out.println("<a href=\"html_session.html\"><button class=\"btn btn-primary\">Back</button></a>");
+            
+            EmployeeDAO.insert(obj);
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
