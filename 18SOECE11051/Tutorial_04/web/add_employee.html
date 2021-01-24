@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Dilip Sarvaiya</title>
+        <meta charset="UTF-8">
+       
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/validation.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+        <style>
+            body
+            {
+                background-color: purple;
+                
+            }
+            .container
+            {
+               
+                padding-bottom:15px;
+            }
+            p
+            {
+                font-size: 18px;
+            }
+            h2,label
+            {
+                color:#ffffff;
+            }
+            .navbar-dark .navbar-nav .nav-link
+            {
+                color: white;          
+            }
+            a.disabled
+            {
+                pointer-events: none;
+                cursor:default;
+            }
+        </style>
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand disabled"  >Employee Management</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="add_employee.html">Add Employee</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ViewServlet">View Employee</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="ProfileServlet">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Session_logout">Logout</a>
+      </li>
+      
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+       <div class="container">
+           <h2>Employee Form</h2>
+            <form  method ="post" action="EmployeeDataServlet">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name" />
+              <p id="p6"></p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" />
+              <p id="p1"></p>
+            </div>
+                 <div class="form-group">
+              <label for="salary">Salary</label>
+              <input type="number" class="form-control" id="salary" placeholder="Enter salary" name="salary" />
+              <p id="p2"></p>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" placeholder="Choose Age" name="age">
+                 <p id="p4"></p>
+            </div>
+            <div class="form-group">   
+                <label for="gender">Gender</label>
+                 <input type="radio" id="gender" checked value="Male" name="gender" /><font color="white"> Male</font>
+                <input type="radio" id="gender" value="Female" name="gender" /><font color="white"> Female</font>
+                 <p id="p6"></p>
+           </div>
+            <div class="form-group">
+              <label for="department">Select the Department</label>
+              <select id="department" class="form-control" name="department">
+                             <option>Computer Engineering</option>
+                             <option>Electrical Engineering</option>
+                             <option>Mechnical Engineering</option>
+                             <option>Electronics Engineering</option>
+                             <option>Civil Engineering</option>
+              </select>
+               <p id="p5"></p>
+            </div>
+       <div class="form-group">
+            <input name="submit" class="btn btn-success" type="submit" value="Submit">
+       </div>
+        </form>
+    </div>
+    </body>
+</html>  

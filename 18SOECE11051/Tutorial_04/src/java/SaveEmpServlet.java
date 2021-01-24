@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
+import DAO.EmployeeDAO;
+import Pojo.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +19,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author Dilip J Sarvaiya
  */
-@WebServlet(urlPatterns = {"/ProfileServlet"})
-public class ProfileServlet extends HttpServlet {
-
+@WebServlet(urlPatterns = {"/SaveEmpServlet"})
+public class SaveEmpServlet extends HttpServlet {
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,40 +36,30 @@ public class ProfileServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-         
-//            out.println("You are successfully ogged in");
-//            out.println("<h1>Welcome " +email + "</h1>");
-//            out.print("<a href=\"Logout_Cookie\"><button clsss=\"btn btn-danger\">Logout</button></a>");
+            HttpSession session=request.getSession(false);  
+            Employee obj=(Employee)session.getAttribute("object");
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/bootstrap.min.css\">");
-            out.println("<title>Servlet librarian_login_Servlet</title>");            
+            out.println("<title>Submmited Data | with Session</title>");            
             out.println("</head>");
             out.println("<body>");
-             out.println("<div class=\"alert alert-primary\" role=\"alert\">\n" +
-"  Username: abc@rku.ac.in</br>\n"+ 
-"  Password: abc123\n" +                    
-"</div>");
-            HttpSession session=request.getSession(false);
-            if(session!=null)
-            {
-                out.println("<font style=\"padding-left: 120px; font-weight: bold;\" color=\"green\">You are successfully Logged In.</font>");
-                String email=(String)session.getAttribute("email");
-                RequestDispatcher rd=request.getRequestDispatcher("template_crud.html");
-                rd.forward(request, response); 
-            }
-            else
-            {
-                 out.println("<div class=\"alert alert-danger\" role=\"alert\">\n" +
-"  You are not Logged in!\n" +
-"</div>");
-                 RequestDispatcher rd=request.getRequestDispatcher("employee_login.html");
-                 rd.include(request, response);
-            }
+            out.println("<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\"><h2 style=\"color:white\";>Employee Details</h2></nav>");
+            out.println("<div class=\"alert alert-success\" role=\"alert\">");
+            
+            out.println("<h3>Name: " + obj.getName()+ "</h3>");
+            out.println("<h3>Email: " + obj.getEmail()+ "</h3>");
+            out.println("<h3>Salary: " + obj.getAge()+ "</h3>");
+            out.println("<h3>Age: " + obj.getGender() + "</h3>");
+            out.println("<h3>Gender: " + obj.getDepartment() + "</h3>");
+            out.println("<a href=\"html_session.html\"><button class=\"btn btn-primary\">Back</button></a>");
+            
+            EmployeeDAO.insert(obj);
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
-            
+           
         }
     }
 

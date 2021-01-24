@@ -44,7 +44,10 @@ public class Employee_login_Servlet extends HttpServlet {
             out.println("<title>Servlet librarian_login_Servlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            
+            out.println("<div class=\"alert alert-primary\" role=\"alert\">\n" +
+"  Username: abc@rku.ac.in</br>\n"+ 
+"  Password: abc123\n" +                    
+"</div>");
             if(email.equals("abc@rku.ac.in") && password.equals("abc123"))
             {
                  HttpSession session=request.getSession();

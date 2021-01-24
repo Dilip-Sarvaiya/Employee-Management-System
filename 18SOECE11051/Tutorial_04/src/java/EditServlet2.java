@@ -4,23 +4,23 @@
  * and open the template in the editor.
  */
 
+import DAO.EmployeeDAO;
+import Pojo.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Dilip J Sarvaiya
  */
-@WebServlet(urlPatterns = {"/ProfileServlet"})
-public class ProfileServlet extends HttpServlet {
-
+@WebServlet(urlPatterns = {"/EditServlet2"})
+public class EditServlet2 extends HttpServlet {
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,40 +35,25 @@ public class ProfileServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-         
-//            out.println("You are successfully ogged in");
-//            out.println("<h1>Welcome " +email + "</h1>");
-//            out.print("<a href=\"Logout_Cookie\"><button clsss=\"btn btn-danger\">Logout</button></a>");
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/bootstrap.min.css\">");
-            out.println("<title>Servlet librarian_login_Servlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-             out.println("<div class=\"alert alert-primary\" role=\"alert\">\n" +
-"  Username: abc@rku.ac.in</br>\n"+ 
-"  Password: abc123\n" +                    
-"</div>");
-            HttpSession session=request.getSession(false);
-            if(session!=null)
-            {
-                out.println("<font style=\"padding-left: 120px; font-weight: bold;\" color=\"green\">You are successfully Logged In.</font>");
-                String email=(String)session.getAttribute("email");
-                RequestDispatcher rd=request.getRequestDispatcher("template_crud.html");
-                rd.forward(request, response); 
-            }
-            else
-            {
-                 out.println("<div class=\"alert alert-danger\" role=\"alert\">\n" +
-"  You are not Logged in!\n" +
-"</div>");
-                 RequestDispatcher rd=request.getRequestDispatcher("employee_login.html");
-                 rd.include(request, response);
-            }
-            out.println("</body>");
-            out.println("</html>");
-            
+           String sid=request.getParameter("id");  
+        int id=Integer.parseInt(sid);  
+        String name=request.getParameter("name");
+        String email=request.getParameter("email");
+        String salary=request.getParameter("salary");
+        int age=Integer.parseInt(request.getParameter("age"));
+        String gender=request.getParameter("gender");  
+        String department=request.getParameter("department");
+        
+        Employee e=new Employee(id,name,email,salary,age,gender,department);
+                
+        int status=EmployeeDAO.update(e);  
+        if(status>0){  
+            response.sendRedirect("ViewServlet");  
+        }else{  
+            out.println("Sorry! unable to update record");  
+        }  
+          
+        out.close();  
         }
     }
 

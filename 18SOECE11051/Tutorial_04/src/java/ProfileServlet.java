@@ -46,10 +46,6 @@ public class ProfileServlet extends HttpServlet {
             out.println("<title>Servlet librarian_login_Servlet</title>");            
             out.println("</head>");
             out.println("<body>");
-             out.println("<div class=\"alert alert-primary\" role=\"alert\">\n" +
-"  Username: abc@rku.ac.in</br>\n"+ 
-"  Password: abc123\n" +                    
-"</div>");
             HttpSession session=request.getSession(false);
             if(session!=null)
             {

@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
+import DAO.EmployeeDAO;
+import Pojo.Employee;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Dilip J Sarvaiya
  */
-@WebServlet(urlPatterns = {"/ProfileServlet"})
-public class ProfileServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ConfirmEmpServlet"})
+public class ConfirmEmpServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,40 +36,36 @@ public class ProfileServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-         
-//            out.println("You are successfully ogged in");
-//            out.println("<h1>Welcome " +email + "</h1>");
-//            out.print("<a href=\"Logout_Cookie\"><button clsss=\"btn btn-danger\">Logout</button></a>");
+            
+            String name=request.getParameter("name");
+            String email=request.getParameter("email");
+            String salary=request.getParameter("salary");
+            int age=Integer.parseInt(request.getParameter("age"));
+            String gender=request.getParameter("gender");
+            String department=request.getParameter("department");
+            int id=1;
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/bootstrap.min.css\">");
-            out.println("<title>Servlet librarian_login_Servlet</title>");            
+            out.println("<title>Submmited Data</title>");            
             out.println("</head>");
             out.println("<body>");
-             out.println("<div class=\"alert alert-primary\" role=\"alert\">\n" +
-"  Username: abc@rku.ac.in</br>\n"+ 
-"  Password: abc123\n" +                    
-"</div>");
-            HttpSession session=request.getSession(false);
-            if(session!=null)
-            {
-                out.println("<font style=\"padding-left: 120px; font-weight: bold;\" color=\"green\">You are successfully Logged In.</font>");
-                String email=(String)session.getAttribute("email");
-                RequestDispatcher rd=request.getRequestDispatcher("template_crud.html");
-                rd.forward(request, response); 
-            }
-            else
-            {
-                 out.println("<div class=\"alert alert-danger\" role=\"alert\">\n" +
-"  You are not Logged in!\n" +
-"</div>");
-                 RequestDispatcher rd=request.getRequestDispatcher("employee_login.html");
-                 rd.include(request, response);
-            }
+            out.println("<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\"><h2 style=\"color:white\";>Employee Details</h2></nav>");
+            out.println("<div class=\"alert alert-success\" role=\"alert\">");
+            out.println("<h3>Name: " + name+ "</h3>");
+            out.println("<h3>Email: " + email+ "</h3>");
+            out.println("<h3>Salary: " + salary+ "</h3>");
+            out.println("<h3>Age: " + age + "</h3>");
+            out.println("<h3>Gender: " + gender + "</h3>");
+            out.println("<h3>Department: " + department + "</h3>");
+            Employee obj=new Employee(id,name,email,salary,age,gender,department);
+            HttpSession session=request.getSession();  
+            session.setAttribute("object",obj);
+            out.println("<a href=\"SaveEmpServlet\"><button class=\"btn btn-primary\">Confirm</button></a>");
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
-            
         }
     }
 
@@ -110,5 +107,4 @@ public class ProfileServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

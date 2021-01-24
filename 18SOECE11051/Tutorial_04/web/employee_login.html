@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <title>Login Page</title>
+  <style>
+   #form_1
+   {
+    padding-left: 100px;
+   }
+    #form_2
+   {
+    padding-left: 150px;
+   } 
+  </style>
+
+</head>
+<body>
+  <table>
+    <tr>
+
+      <td>
+        <div class="container">
+        <form  method="post" action="Employee_login_Servlet" id="form_1">
+           <h2>Employee Login</h2>
+           
+          <div class="form-group">
+              <b><label for="exampleInputEmail1">Email address</label></b>
+            <input  size="40" type="email" name="email" class="form-control" aria-describedby="emailHelp" placeholder="Email"/>
+          </div>
+          <div class="form-group">
+              <b><label for="exampleInputPassword1">Password</label></b>
+            <input size="40" type="password" name="password" class="form-control" placeholder="Password">
+          </div>
+          
+          <input type="submit" class="btn btn-primary" value="Submit" />
+        </form>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
